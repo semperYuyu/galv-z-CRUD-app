@@ -38,6 +38,7 @@ const NavBar = () => {
           <Button
             onClick={() => {
               Cookies.remove("userId");
+              Cookies.remove("username");
               navigate("/login");
             }}
           >
