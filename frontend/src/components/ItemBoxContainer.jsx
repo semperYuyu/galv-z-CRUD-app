@@ -1,5 +1,12 @@
 function ItemBoxContainer({ children }) {
-  return <div className={"row row-cols-4"} style={{margin: "10px"}}>{children}</div>;
+  return (
+    <div
+      className={"row row-cols-4 justify-content-center"}
+      style={{ margin: "10px" }}
+    >
+      {children}
+    </div>
+  );
 }
 
 export default ItemBoxContainer;

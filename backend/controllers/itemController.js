@@ -59,7 +59,7 @@ const createNewItem = async (req, res) => {
         quantity,
       })
       .returning("*");
-    return res.status(201).json({ data });
+    return res.status(201).json({ data: data[0] });
   } catch (err) {
     return res.status(500).json({ error: "Internal Server Error" });
   }

@@ -30,7 +30,7 @@ function ViewInventory() {
 
   if (!data) return <Spinner animation={"border"} />;
   return (
-    <>
+    <div className={"d-flex flex-column align-items-center gap-3"}>
       <h2> {username}'s Inventory </h2>
       <Button onClick={() => setShowModal(true)}> Create New Item... </Button>
       <Modal openModal={showModal} closeModal={() => setShowModal(false)} />
@@ -49,7 +49,7 @@ function ViewInventory() {
           );
         })}
       </ItemBoxContainer>
-    </>
+    </div>
   );
 }
 

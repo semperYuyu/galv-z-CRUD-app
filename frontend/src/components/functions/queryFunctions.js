@@ -61,13 +61,10 @@ export const submitSignUp = async (
 }; // signup to url/auth/signup
 
 export const editItem = async (itemId, item_name, description, quantity) => {
-  if (!itemId) {
-    console.log({ error: "Item ID is REQUIRED" });
-    // return { error: "Item ID is REQUIRED"}
-  }
+  if (!itemId) return { error: "Item ID is REQUIRED" };
+
   if (!item_name && !description && !quantity) {
-    console.log({ error: "Edit at least 1 field" });
-    // return { error: "Edit at least 1 field"}
+    return { error: "Edit at least 1 field" };
   }
 
   const payload = { itemId, item_name, description, quantity };
@@ -82,27 +79,56 @@ export const editItem = async (itemId, item_name, description, quantity) => {
   });
 
   const data = await req.json();
-  return data
+  return data;
 }; // send PATCH to url/items/:itemId
 
 export const deleteItem = async (itemId) => {
-  if (!itemId) return { error: "Item ID is REQUIRED"}
+  if (!itemId) return { error: "Item ID is REQUIRED" };
 
-  const payload = { itemId }
+  const payload = { itemId };
 
   const req = await fetch(`${url}/items/${itemId}`, {
     method: "DELETE",
     credentials: "include",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(payload)
-  })
+    body: JSON.stringify(payload),
+  });
 
-  const data = await req.json()
+  const data = await req.json();
 
   return data;
 }; // send DELETE to url/items/:itemId
 
-export const submitNewItem = async () => {}; // send POST to url/items/new
+export const submitNewItem = async (
+  user_id,
+  item_name,
+  description,
+  quantity,
+) => {
+  if (!user_id) {
+    return { error: "User ID is REQUIRED" };
+  }
 
+  if (
+    (!item_name && !description && !quantity) ||
+    (item_name === "" || description === "")
+  ) {
+    return { error: "All fields required" };
+  }
+
+  const payload = { user_id, item_name, description, quantity };
+  const res = await fetch(`${url}/items/new`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await res.json();
+
+  return data.data;
+}; // send POST to url/items/new

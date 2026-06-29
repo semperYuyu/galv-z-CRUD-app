@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 function ItemBox({ name, desc, quantity, onClick }) {
-  const [hovered, setHovered] = useState(false)
+  const [hovered, setHovered] = useState(false);
+  const image = "/lootbag.png";
   return (
     <div
       className={"display-flex flex-column text-center"}
@@ -18,8 +19,19 @@ function ItemBox({ name, desc, quantity, onClick }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <h3> {name} </h3>
-      <p> {desc} </p>
+      <h3 className={"text-truncate"} style={{ maxWidth: "100ch" }}>
+        {" "}
+        {name}{" "}
+      </h3>
+      <img
+        src={image}
+        alt="an item"
+        style={{ border: "solid black", borderRadius: "10px", padding: "3px", height: "150px", width: "125px" }}
+      />
+      <p className={"text-truncate"} style={{ maxWidth: "100ch" }}>
+        {" "}
+        {desc}{" "}
+      </p>
       <p> Quantity: {quantity} </p>
     </div>
   );

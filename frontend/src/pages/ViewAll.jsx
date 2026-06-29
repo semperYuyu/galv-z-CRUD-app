@@ -20,8 +20,8 @@ function ViewAll() {
 
   if (!data) return <Spinner animation={"border"} />;
   return (
-    <>
-      <h1> All Items </h1>
+    <div className={"d-flex flex-column align-items-center gap-10"}>
+      <h1> Browse All Items </h1>
 
       <ItemBoxContainer>
         {data.map((item) => {
@@ -38,7 +38,7 @@ function ViewAll() {
           );
         })}
       </ItemBoxContainer>
-    </>
+    </div>
   );
 }
 

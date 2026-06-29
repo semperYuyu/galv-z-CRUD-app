@@ -30,6 +30,7 @@ function IndividualItem() {
 
   if (!data) return <Spinner animation={"border"} />;
 
+  console.log(data)
   return (
     <div>
       <div className={"d-flex flex-row gap-2"}>
@@ -135,7 +136,7 @@ function IndividualItem() {
             border: editable ? "" : "none",
             borderRadius: "15px",
           }}
-          type={"number"}
+          type={editable ? "number" : "text"}
           min={1}
           max={100}
           readOnly={!editable}
@@ -144,9 +145,10 @@ function IndividualItem() {
         {editable && "(100 count max)"}
       </p>
       <p> Item ID: {data.id} </p>
-      <p> Item Owner: {data.owner}</p>
+      <p> Item Owner: { userId == data.user_id ? `${data.owner} (You)` : data.owner }</p>
     </div>
   );
 }
 
 export default IndividualItem;
+0
