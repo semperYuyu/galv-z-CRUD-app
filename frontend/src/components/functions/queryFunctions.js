@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 const url = import.meta.env.VITE_API_URL;
+
 export const getUserId = () => {
   return Cookies.get("userId");
 };
